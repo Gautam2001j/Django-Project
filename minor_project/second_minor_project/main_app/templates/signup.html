@@ -1,0 +1,112 @@
+{% load static %}
+{% load socialaccount %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Sign Up</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <style>
+    main {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    .container2 {
+      max-width: 400px;
+      margin: 100px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      margin-top: 20px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="submit"],
+    button {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    button {
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+    button:hover {
+      background-color: #0056b3;
+    }
+    .toggle-links {
+      text-align: center;
+    }
+    .toggle-links a {
+      margin: 0 10px;
+      text-decoration: none;
+      color: #007bff;
+    }
+    .toggle-links a:hover {
+      text-decoration: underline;
+    }  
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Advanced Coaching Class</h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'instructors' %}">Instructors</a></li>
+          <li><a href="{% url 'courses' %}">Courses</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'signin' %}">Sign In</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+  <div class="container2">
+    <div class="toggle-links">
+      <a href="{% url 'signin' %}" id="signInLink">Sign In</a>
+      <a href="{% url 'signup' %}" id="signUpLink">Sign Up</a>
+    </div>
+    <div id="signUpForm">
+      <h2>Sign Up</h2>
+      <form action="{% url 'signup' %}" method="post">
+        {% csrf_token %}
+        <input type="text" name="username" placeholder="UserName"  required>
+        <input type="email" name="email" placeholder="Email"  required>
+        <input type="text" name="mobilenumber" placeholder="Mobile Number" required>
+        <input type="password" name="password1" placeholder="Password"  required>
+        <input type="password" name="password2" placeholder="Re-Type Password"  required>
+        <button type="submit">Sign Up</button>
+        <p>Or sign up with:</p>
+        <a href="{% provider_login_url 'google' %}"><button type="button" onclick="signUpWithGoogle()">Google</button></a>
+        <button type="button" onclick="signUpWithOTP()">OTP</button>
+      </form>    
+    </div>
+  </div>
+</main>
+<footer>
+  <div class="container">
+    <p>&copy; 2024 Advanced Coaching Class. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

@@ -1,0 +1,57 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Coaching Class - Teachers</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Advanced Coaching Class</h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'instructors' %}">Instructors</a></li>
+          <li><a href="{% url 'courses' %}">Courses</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'studentinfo' %}">Click Here To Fill The Application Form</a></li>
+          {% else %}
+            <li><a href="{% url 'signin' %}">Sign In</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section id="teachers">
+      <div class="container">
+        <h2>Meet Our Faculty</h2>
+        <div class="teacher">
+          <img src="{% static 'images/ST.jpg' %}" alt="Dr. Sandesh Tripathi">
+          <h3>Dr. Sandesh Tripathi</h3>
+          <p>HoD ( Computer Science Department)</p>
+        </div>
+        <div class="teacher">
+          <img src="{% static 'images/AC.jpg' %}" alt="Mr. Anil Kumar Chaurasia">
+          <h3>Mr. Anil Kumar Chaurasia</h3>
+          <p>HoD ( Electronics and Communication Department)</p>
+        </div>
+        <div class="teacher">
+          <img src="{% static 'images/AKS.jpg' %}" alt="Mr. Abhay Kumar Sharma">
+          <h3>Mr. Abhay Kumar Sharma</h3>
+          <p>HoD ( Masters of Computer Applications)</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Advanced Coaching Class. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

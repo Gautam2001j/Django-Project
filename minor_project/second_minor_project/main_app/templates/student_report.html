@@ -1,0 +1,145 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Student Information Form</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+  <style>
+    main {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 0;
+      background-color: #f0f0f0;
+    }
+    .container2 {
+      max-width: 600px;
+      margin: 50px auto;
+      padding: 20px;
+      background-color: #fff;
+      border-radius: 8px;
+      box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+      text-align: center;
+    }
+    form {
+      margin-top: 20px;
+    }
+    input[type="text"],
+    input[type="number"],
+    select,
+    textarea,
+    input[type="submit"] {
+      width: 100%;
+      padding: 10px;
+      margin-bottom: 10px;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      box-sizing: border-box;
+    }
+    input[type="submit"] {
+      background-color: #007bff;
+      color: #fff;
+      cursor: pointer;
+    }
+    input[type="submit"]:hover {
+      background-color: #0056b3;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Advanced Coaching Class</h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'instructors' %}">Instructors</a></li>
+          <li><a href="{% url 'courses' %}">Courses</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+          {% else %}
+            <li><a href="{% url 'signin' %}">Sign In</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <div class="container2">
+    <h2>Student Information Form</h2>
+    <form action="#" method="post">
+      {% csrf_token %}
+      <label for="fullName">Full Name:</label>
+      <input type="text" id="fullName" name="fullName" required>
+
+      <label for="email">Email:</label>
+      <input type="email" id="email" name="email" required>
+
+      <label for="phone">Phone Number:</label>
+      <input type="tel" id="phone" name="phone" required>
+
+      <label for="address">Address:</label>
+      <textarea id="address" name="address" rows="4" required></textarea>
+
+      <h3>High School Marks</h3>
+      <label for="math">Math:</label>
+      <input type="number" id="math" name="math" min="0" max="100" required>
+
+      <label for="science">Science:</label>
+      <input type="number" id="science" name="science" min="0" max="100" required>
+
+      <label for="english">English:</label>
+      <input type="number" id="english" name="english" min="0" max="100" required>
+
+      <label for="hindi">Hindi:</label>
+      <input type="number" id="hindi" name="hindi" min="0" max="100" required>
+
+      <h3>10+2 Marks</h3>
+      <label for="physics">Physics:</label>
+      <input type="number" id="physics" name="physics" min="0" max="100" required>
+
+      <label for="chemistry">Chemistry:</label>
+      <input type="number" id="chemistry" name="chemistry" min="0" max="100" required>
+
+      <label for="maths">Mathematics:</label>
+      <input type="number" id="maths" name="maths" min="0" max="100" required>
+
+      <h3>Preferences</h3>
+      <label for="preference1">Preference 1:</label>
+      <select id="preference1" name="preference1" required>
+        <option value="">Select Option</option>
+        <option value="computer_science_engineering">Computer Science and Engineering</option>
+        <option value="electronics_communication_engineering">Electronics and Communication Engineering</option>
+        <option value="information_technology">Information Technology</option>
+      </select>
+
+      <label for="preference2">Preference 2:</label>
+      <select id="preference2" name="preference2" required>
+        <option value="">Select Option</option>
+        <option value="computer_science_engineering">Computer Science and Engineering</option>
+        <option value="electronics_communication_engineering">Electronics and Communication Engineering</option>
+        <option value="information_technology">Information Technology</option>
+      </select>
+
+      <label for="preference3">Preference 3:</label>
+      <select id="preference3" name="preference3" required>
+        <option value="">Select Option</option>
+        <option value="computer_science_engineering">Computer Science and Engineering</option>
+        <option value="electronics_communication_engineering">Electronics and Communication Engineering</option>
+        <option value="information_technology">Information Technology</option>
+      </select>
+
+      <input type="submit" value="Submit">
+    </form>
+  </div>
+</main>
+<footer>
+  <div class="container">
+    <p>&copy; 2024 Advanced Coaching Class. All rights reserved.</p>
+  </div>
+</footer>
+</body>
+</html>

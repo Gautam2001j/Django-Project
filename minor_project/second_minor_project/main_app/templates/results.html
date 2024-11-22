@@ -1,0 +1,66 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+    <title>Results</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+        .container2 {
+            max-width: 600px;
+            margin: 50px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            text-align: center;
+        }
+        h2 {
+            color: #007bff;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <div class="container">
+          <h1>Advanced Coaching Class</h1>
+          <nav>
+            <ul>
+              <li><a href="{% url 'home' %}">Home</a></li>
+              <li><a href="{% url 'instructors' %}">Instructors</a></li>
+              <li><a href="{% url 'courses' %}">Courses</a></li>
+              {% if user.is_authenticated %}
+                <li><a href="{% url 'logout' %}">Logout</a></li>
+              {% else %}
+                <li><a href="{% url 'signin' %}">Sign In</a></li>
+              {% endif %}
+            </ul>
+          </nav>
+        </div>
+      </header>
+      <main>
+    <div class="container2">
+        <h2>Success!</h2>
+        <p>{{ message }}</p>
+        {% if assigned_branch %}
+        <p>Congratulations! You have been assigned to {{ assigned_branch }}.</p>
+    {% else %}
+        <p>Wait for results.</p>
+    {% endif %}
+
+    </div>
+</main>
+    <footer>
+        <div class="container">
+          <p>&copy; 2024 Advanced Coaching Class. All rights reserved.</p>
+        </div>
+      </footer>
+</body>
+</html>

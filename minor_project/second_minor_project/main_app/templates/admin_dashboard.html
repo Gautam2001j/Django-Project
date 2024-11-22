@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            margin: 0;
+            padding: 0;
+        }
+        
+        .container {
+            max-width: 1800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            overflow-x: auto;
+        }
+
+        h1, h2 {
+            text-align: center;
+        }
+        
+        table {
+            border-collapse: collapse;
+            margin-top: 20px;
+            width: auto;
+            white-space: nowrap;
+        }
+        
+        th, td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+            min-width: 150px; /* Adjust this value as needed */
+            max-width: 300px; /* Adjust this value as needed */
+            word-wrap: break-word;
+        }
+        
+        th {
+            background-color: #f2f2f2;
+        }
+        
+        tr:nth-child(even) {
+            background-color: #f9f9f9;
+        }
+        
+        tr:hover {
+            background-color: #f2f2f2;
+        }
+        
+        button {
+            background-color: #4CAF50;
+            color: white;
+            border: none;
+            padding: 8px 16px;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+        }
+        
+        button:hover {
+            background-color: #45a049;
+        }
+        
+        select {
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+        
+        form {
+            display: flex;
+            align-items: center;
+        }
+        
+        .form-group {
+            margin-bottom: 10px;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+        }
+        
+        .form-group input,
+        .form-group select {
+            width: 100%;
+            padding: 8px;
+            border-radius: 4px;
+            border: 1px solid #ddd;
+        }
+
+        
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Welcome, Admin!</h1>
+        <a href="{% url 'logout' %}"><button type="button">Logout</button></a>
+        <h2>Student Information</h2>
+        <table>
+            <thead>
+                <tr>
+                    <th colspan="4">Personal Information</th>
+                    <th colspan="5">High School Marks</th>
+                    <th colspan="4">Intermediate (10+2) Marks</th>
+                    <th colspan="3">Preferences</th>
+                    <th rowspan="2">Assign Branch</th>
+                </tr>
+                <tr>
+                    <th>Name</th>
+                    <th>Email</th>
+                    <th>Phone Number</th>
+                    <th>Address</th>
+                    <th>Maths</th>
+                    <th>Science</th>
+                    <th>English</th>
+                    <th>Hindi</th>
+                    <th>Percentage</th>
+                    <th>Physics</th>
+                    <th>Chemistry</th>
+                    <th>Mathematics</th>
+                    <th>Percentage</th>
+                    <th>Preference 1</th>
+                    <th>Preference 2</th>
+                    <th>Preference 3</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for student in students %}
+                <tr>
+                    <td>{{ student.full_name }}</td>
+                    <td>{{ student.email }}</td>
+                    <td>{{ student.phone_number }}</td>
+                    <td>{{ student.address }}</td>
+                    <td>{{ student.math_marks_hs }}</td>
+                    <td>{{ student.science_marks_hs }}</td>
+                    <td>{{ student.english_marks_hs }}</td>
+                    <td>{{ student.hindi_marks_hs }}</td>
+                    <td>{{ student.hs_percentage}}</td>
+                    <td>{{ student.physics_marks_10p2 }}</td>
+                    <td>{{ student.chemistry_marks_10p2 }}</td>
+                    <td>{{ student.mathematics_marks_10p2 }}</td>
+                    <td>{{ student.marks_10p2_percentage }}</td>
+                    <td>{{ student.preference_1 }}</td>
+                    <td>{{ student.preference_2 }}</td>
+                    <td>{{ student.preference_3 }}</td>
+                    <td>
+                        {% if student.branch %}
+                            <span style="color: green;">&#10004; Assigned: {{ student.branch }}</span>
+                        {% else %}
+                            <form method="post" action="{% url 'assign_branch' %}">
+                                {% csrf_token %}
+                                <input type="hidden" name="student_id" value="{{ student.id }}">
+                                <select name="branch">
+                                    <option value="Computer Science">Computer Science</option>
+                                    <option value="Electronics and Communication">Electronics and Communication</option>
+                                    <option value="Information Technology">Information Technology</option>
+                                </select>
+                                <button type="submit">Assign</button>
+                            </form>
+                        {% endif %}
+                    </td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>

@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Coaching Class - Home</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Advanced Coaching Class</h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'instructors' %}">Instructors</a></li>
+          <li><a href="{% url 'courses' %}">Courses</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'studentinfo' %}">Click Here To Fill The Application Form</a></li>
+          {% else %}
+            <li><a href="{% url 'signin' %}">Sign In</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section id="introduction">
+      <div class="container">
+        <h2>Welcome to Our Coaching Class</h2>
+        <p>Frustrated with plateaued grades or aiming for competitive exams? Advanced Coaching Classes can be your launchpad. Led by seasoned educators passionate about student success, we empower you to grasp challenging concepts, build strong foundations, and excel in academics. Our personalized coaching caters to your specific needs and learning styles.  Join our vibrant community and unlock your full academic potential – witness the difference and achieve your goals!</p>
+        <div class="gallery">
+          <img src="{% static 'images/classroom1.jpeg' %}" alt="Classroom 1">
+          <img src="{% static 'images/classroom2.jpeg' %}" alt="Classroom 2">
+          <img src="{% static 'images/classroom3.jpeg' %}" alt="Classroom 3">
+        </div>
+      </div>
+    </section>
+    <section id="contact">
+      <div class="container">
+        <h2>Contact Us</h2>
+        <p>Email: info@advancedcoaching.com</p>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Advanced Coaching Class. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>

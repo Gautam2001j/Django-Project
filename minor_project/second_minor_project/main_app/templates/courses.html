@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Coaching Class - Courses</title>
+  <link rel="stylesheet" href="{% static 'css/styles.css' %}">
+</head>
+<body>
+  <header>
+    <div class="container">
+      <h1>Advanced Coaching Class</h1>
+      <nav>
+        <ul>
+          <li><a href="{% url 'home' %}">Home</a></li>
+          <li><a href="{% url 'instructors' %}">Instructors</a></li>
+          <li><a href="{% url 'courses' %}">Courses</a></li>
+          {% if user.is_authenticated %}
+            <li><a href="{% url 'logout' %}">Logout</a></li>
+            <li><a href="{% url 'studentinfo' %}">Click Here To Fill The Application Form</a></li>
+          {% else %}
+            <li><a href="{% url 'signin' %}">Sign In</a></li>
+          {% endif %}
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <section id="courses">
+      <div class="container">
+        <h2>Our Courses</h2>
+        <div class="course">
+          <h3>Advanced Mathematics</h3>
+          <p>Feeling lost in a sea of formulas? Our Advanced Mathematics course is your lifeline! Led by passionate instructors with a knack for explaining complex concepts, we'll guide you through rigorous topics, from advanced calculus to abstract algebra. Develop critical thinking skills, hone problem-solving techniques, and gain the confidence to tackle any mathematical challenge. Whether you're aiming for top scores on standardized tests or simply pushing your intellectual boundaries, this course equips you with the tools to excel in the fascinating world of advanced mathematics. This course covers advanced topics in mathematics including calculus, linear algebra, and differential equations.</p>
+        </div>
+        <div class="course">
+          <h3>Advanced Physics</h3>
+          <p>Ready to delve deeper into the mysteries of the universe? Our Advanced Physics course goes beyond the equations on the page. Led by inspiring instructors who ignite a passion for the subject, we'll explore fundamental forces, quantum mechanics, and the frontiers of modern physics.  Through interactive lectures, labs, and discussions, you'll gain a holistic understanding of the physical world.  Develop critical thinking skills, refine your problem-solving approach, and prepare for college-level physics with confidence.  This course is your launchpad to unraveling the universe's hidden wonders. This course delves into advanced concepts in physics such as quantum mechanics, electromagnetism, and relativity.</p>
+        </div>
+        <div class="course">
+          <h3>Advanced Computer Science</h3>
+          <p>Ready to push the boundaries of the digital world? Our Advanced Computer Science course empowers you to become a coding mastermind. Led by industry veterans with real-world experience, we'll delve into advanced topics like algorithms, data structures, and machine learning.  Learn to design and build complex software applications, master cutting-edge technologies, and unlock your creative problem-solving potential.  Whether you're aspiring for a career in software development, artificial intelligence, or cybersecurity, this course equips you with the skills to become a leader in the ever-evolving landscape of computer science. This course explores advanced topics in computer science including algorithms, data structures, and artificial intelligence.</p>
+        </div>
+      </div>
+    </section>
+  </main>
+  <footer>
+    <div class="container">
+      <p>&copy; 2024 Advanced Coaching Class. All rights reserved.</p>
+    </div>
+  </footer>
+</body>
+</html>
